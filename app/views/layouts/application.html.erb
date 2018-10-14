@@ -10,7 +10,10 @@
   </head>
 
   <body>
-  <%= render partial: 'shared/nav_bar' %>
-    <%= yield %>
+    <%= render partial: 'shared/nav_bar' %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -6,13 +6,32 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-        <a class="nav-link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="<%= new_user_registration_path %>">Cadastrar-se</a>
-    </li>
-
+      <li class="nav-item active">
+          <a class="nav-link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
+      </li>
     </ul>
-  </div>  
+    <% if !user_signed_in? %>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="<%= new_user_registration_path %>">Cadastrar-se</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%=  new_user_session_path %>">Entrar</a>
+        </li>
+      </ul>
+    <% else %>
+      <ul class="navbar-nav">
+        <li>Olá, <b><%= current_user.email %></b></li>
+        <li><%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-danger"  %></li>
+      </ul>
+    <% end %>
+  </div>
 </nav>  
+
+  <% if flash[:success] %>
+    <div class="alert alert-success"><%= flash[:success] %></div>
+  <% elsif flash[:alert] %>
+    <div class="alert alert-warning"><%= flash[:alert] %></div>
+  <% elsif flash[:error] %>
+    <div class="alert alert-danger"><%= flash[:error] %></div>
+  <% end %>
