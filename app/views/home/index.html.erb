@@ -1,0 +1,10 @@
+<h1>Bem vindo ao Square Geek</h1>
+
+<% @products.each do |product| %>
+    <div class="card-body">
+        <h5 class="card-title"><%= link_to product.title, product %></h5>
+        <p class="card-text"><%= product.description %></p>
+    </div>    
+<% end %> 
+
+

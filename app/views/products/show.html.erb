@@ -1,0 +1,19 @@
+<h1>Detalhes do Produto</h1>
+
+<h1><%= @product.title %></h1>
+<h3>Detalhes</h3>
+<p><%= @product.description %></p>
+<h3>Categoria</h3>
+<p><%= @product.category.name %></p>
+<h3>Preço<h3>
+<p><%= @product.price %></p>
+<h3>Condição<h3>
+<p><%= @product.condition.name %></p>
+<h3>Negociação<h3>
+<% if @product.trade? %>
+    <p>Troca</p>
+<% elsif @product.sale? %>
+    <p>Venda</p>
+<% elsif @product.both? %>
+    <p>Troca ou Venda</p>
+<% end %>
