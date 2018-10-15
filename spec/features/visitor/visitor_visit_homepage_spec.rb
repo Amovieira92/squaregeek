@@ -53,11 +53,13 @@ feature 'visitor visit home page' do
     expect(page).to have_css('h3', text: 'Detalhes')
     expect(page).to have_css('p', text: product.description)
     expect(page).to have_css('h3', text: 'Categoria')
-    expect(page).to have_css('p', text: product.category)
+    expect(page).to have_css('p', text: product.category.name)
+    expect(page).to have_css('h3', text: 'Preço')
     expect(page).to have_css('p', text: product.price)
     expect(page).to have_css('h3', text: 'Condição')
-    expect(page).to have_css('p', text: product.condition)
-    expect(page).to have_css('p', text: product.negotiations)
+    expect(page).to have_css('p', text: product.condition.name)
+    expect(page).to have_css('h3', text: 'Negociação')
+    expect(page).to have_css('p', text: 'Troca')
   end
 
   #product.photo = File.new(photo: Rails.root.join('spec', 'support', 'fixtures', 'knightfall.jpg'))
