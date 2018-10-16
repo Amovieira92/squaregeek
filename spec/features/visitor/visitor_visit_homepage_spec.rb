@@ -13,26 +13,26 @@ feature 'visitor visit home page' do
     condition = Condition.create(name: 'Bom estado')
 
     product = Product.create(title: 'HQ do Batman: Knight Fall',
-                             description: 'Rara HQ do Batman em ótimo estado de conservação',
+                             description: 'Rara HQ do Batman bem conservada',
                              category: category, price: '1000,00',
                              condition: condition, negotiation: :trade)
 
-    another_category = Category.create(name: 'Brinquedos')
-
-    another_condition = Condition.create(name: 'Conservado')
-
     another_product = Product.create(title: 'Robô megazord',
-                                     description: 'Robô megazord em peças de lego edição limitada',
+                                     description: 'Robô megazord lego',
                                      category: category, price: '500,00',
                                      condition: condition, negotiation: :both)
 
     visit root_path
 
-    expect(page).to have_css('h5', text: product.title, class: 'card-title')
-    expect(page).to have_css('p', text: product.description, class: 'card-text')
+    expect(page).to have_css('h5', text: product.title,
+                                   class: 'card-title')
+    expect(page).to have_css('p', text: product.description,
+                                  class: 'card-text')
 
-    expect(page).to have_css('h5', text: product.title, class: 'card-title')
-    expect(page).to have_css('p', text: product.description, class: 'card-text')
+    expect(page).to have_css('h5', text: another_product.title,
+                                   class: 'card-title')
+    expect(page).to have_css('p', text: another_product.description,
+                                  class: 'card-text')
   end
 
   scenario 'and view product details' do
@@ -41,7 +41,7 @@ feature 'visitor visit home page' do
     condition = Condition.create(name: 'Bom estado')
 
     product = Product.create(title: 'HQ do Batman: Knight Fall',
-                             description: 'Rara HQ do Batman em ótimo estado de conservação',
+                             description: 'Rara HQ do Batman bem conservada',
                              category: category, price: '1000,00',
                              condition: condition, negotiation: :trade)
 
@@ -54,14 +54,10 @@ feature 'visitor visit home page' do
     expect(page).to have_css('h3', text: 'Categoria')
     expect(page).to have_css('p', text: product.category.name)
     expect(page).to have_css('h3', text: 'Preço')
-    expect(page).to have_css('p', text: product.price)
+    expect(page).to have_css('p', text: 'R$ 1.000,00')
     expect(page).to have_css('h3', text: 'Condição')
     expect(page).to have_css('p', text: product.condition.name)
     expect(page).to have_css('h3', text: 'Negociação')
     expect(page).to have_css('p', text: 'Troca')
   end
-
-  # product.photo = File.new(photo: Rails.root.join('spec', 'support', 'fixtures', 'knightfall.jpg'))
-  # expect(current_path).to eq product_path(product)
-  # expect(page).to have_xpath("//img[contains(@src, 'knightfall.jpg')]")
 end
