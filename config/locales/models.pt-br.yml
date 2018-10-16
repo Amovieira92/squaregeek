@@ -1,0 +1,13 @@
+pt-BR:
+  activerecord:
+    models:
+      user: Usúario
+    attributes:
+      user:
+        email: Email
+        password: Senha
+        phone: Telefone
+        name: Nome
+        city: Cidade
+        state: Estado
+        current_password: Senha Atual

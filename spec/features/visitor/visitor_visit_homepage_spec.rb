@@ -2,7 +2,20 @@ require 'rails_helper'
 
 feature 'visitor visit home page' do
   scenario 'successfully' do
+    category = Category.create(name: 'HQs')
+
+    condition = Condition.create(name: 'Bom estado')
+
+    product = Product.create(title: 'HQ do Batman: Knight Fall',
+                             description: 'Rara HQ do Batman bem conservada',
+                             category: category, price: '1000,00',
+                             condition: condition, negotiation: :trade)
     visit root_path
+
+    within '.product' do
+      expect(page).to have_content(product.title)
+      expect(page).to have_content(product.description)
+    end
 
     expect(page).to have_css('h1', text: 'Bem vindo ao Square Geek')
   end
