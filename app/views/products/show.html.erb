@@ -1,0 +1,13 @@
+<h1>Detalhes do Produto</h1>
+<%= image_tag(@product.photo.url(:medium)) %>
+<h1><%= @product.title %></h1>
+<h3>Detalhes</h3>
+<p><%= @product.description %></p>
+<h3>Categoria</h3>
+<p><%= @product.category.name %></p>
+<h3>Preço<h3>
+<p><%= number_to_currency(@product.price) %></p>
+<h3>Condição<h3>
+<p><%= @product.condition.name %></p>
+<h3>Negociação<h3>
+<p><%= t(@product.negotiation) %></p>

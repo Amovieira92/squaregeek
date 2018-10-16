@@ -10,6 +10,7 @@ gem 'devise'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'mini_racer', platforms: :ruby
+gem 'paperclip', '~> 6.0.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.1'
 gem 'sass-rails', '~> 5.0'
@@ -25,6 +26,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'robocop', require: false
   gem 'rspec-rails'
+  gem 'rubocop', require: false
   gem 'simplecov', require: false
 end
 

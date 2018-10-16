@@ -1,4 +1,11 @@
-<div class = 'product'>
-    <p>HQ do Batman: Knight Fall</p>
-    <p>Rara HQ do Batman em ótimo estado de conservação</p>
+<h1>Bem vindo ao Square Geek</h1>
+
+<%= link_to 'Anunciar produto', new_product_path, class: 'btn btn-primary'%>
+<div class="product">
+  <% @products.each do |product| %>
+      <div class="card-body">
+          <h5 class="card-title"><%= link_to product.title, product %></h5>
+          <p class="card-text"><%= product.description %></p>
+      </div>
+  <% end %>
 </div>
