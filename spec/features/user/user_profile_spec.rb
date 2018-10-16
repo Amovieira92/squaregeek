@@ -7,7 +7,9 @@ feature 'User profile' do
   end
 
   scenario 'and enter my profile page' do
-    user = create(:user, name: 'joao', email: 'joao@email.com', password: '123456', city: 'Sao Paulo', state: 'Sao Paulo', phone: '123456')
+    user = create(:user, name: 'joao', email: 'joao@email.com',
+                         password: '123456', city: 'Sao Paulo',
+                         state: 'Sao Paulo', phone: '123456')
     visit root_path
 
     click_on 'Entrar'
@@ -28,7 +30,9 @@ feature 'User profile' do
   end
 
   scenario 'and edit profile' do
-    user = create(:user, name: 'joao', email: 'joao@email.com', password: '123456', city: 'Sao Paulo', state: 'Sao Paulo', phone: '123456')
+    user = create(:user, name: 'joao', email: 'joao@email.com',
+                         password: '123456', city: 'Sao Paulo',
+                         state: 'Sao Paulo', phone: '123456')
     visit root_path
     click_on 'Entrar'
     fill_in 'Email', with: user.email
@@ -53,7 +57,9 @@ feature 'User profile' do
   end
 
   scenario 'and try to edit profile with blank fields' do
-    user = create(:user, name: 'joao', email: 'joao@email.com', password: '123456', city: 'Sao Paulo', state: 'Sao Paulo', phone: '123456')
+    user = create(:user, name: 'joao', email: 'joao@email.com',
+                         password: '123456', city: 'Sao Paulo',
+                         state: 'Sao Paulo', phone: '123456')
     visit root_path
     click_on 'Entrar'
     fill_in 'Email', with: user.email
