@@ -17,5 +17,3 @@ AllCops:
     -  'spec/spec_helper.rb'
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context', 'feature', 'scenario', 'let']
-Style/AlignHash:
-  Enabled: false
