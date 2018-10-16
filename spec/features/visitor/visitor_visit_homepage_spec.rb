@@ -7,6 +7,6 @@ feature 'visitor visit home page' do
     within '.product' do
       expect(page).to have_content(product.title)
       expect(page).to have_content(product.description)
-    end 
-  end 
-end 
+    end
+  end
+end
