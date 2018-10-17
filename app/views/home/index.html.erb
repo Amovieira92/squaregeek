@@ -10,21 +10,25 @@
   <% end %>
 </div>
 
-<div class="row">
-  <% @products.each do |product| %>
-   <div class="col-4">
-      <div class="card" id='card-product<%= product.id %>'>
-        <%= image_tag product.photo.url(:thumb), class: 'card-img-top' %>
-        <div class="card-body">
-            <h5 class="card-title"><%= link_to product.title, product %></h5>
-            <p class="card-text">
-                <%= t product.negotiation %>
-                <%= number_to_currency(product.price) %>
-            </p>
+<% if @products.empty? %>
+  <div>
+    <p>Não houve resultados para esta busca</p>
+  </div>
+<% else %>
+  <div class="row">
+    <% @products.each do |product| %>
+    <div class="col-4">
+        <div class="card" id='card-product<%= product.id %>'>
+          <%= image_tag product.photo.url(:thumb), class: 'card-img-top' %>
+          <div class="card-body">
+              <h5 class="card-title"><%= link_to product.title, product %></h5>
+              <p class="card-text">
+                  <%= t product.negotiation %>
+                  <%= number_to_currency(product.price) %>
+              </p>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %> 
-</div>
-
-
+    <% end %> 
+  </div>
+<% end %>

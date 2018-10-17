@@ -17,11 +17,11 @@ feature 'visitor visit home page' do
                              category: category, price: '1000,00',
                              condition: condition, negotiation: :trade,
                              photo: File.new(Rails.root.join('spec', 'support',
-                                                    'knightfall.jpg')))
+                                                             'knightfall.jpg')))
 
     visit root_path
     within '#card-product1' do
-      expect(page).to have_css("//img[@src*='knightfall.jpg']")
+      expect(page).to have_css("img[@src*='knightfall.jpg']")
       expect(page).to have_css('h5', text: product.title, class: 'card-title')
       expect(page).to have_css('p', text: 'Troca', class: 'card-text')
       expect(page).to have_css('p', text: 'R$ 1.000,00', class: 'card-text')
@@ -33,32 +33,34 @@ feature 'visitor visit home page' do
 
     condition = Condition.create(name: 'Bom estado')
 
-    product = Product.create(title: 'HQ do Batman: Knight Fall',
-                             description: 'Rara HQ do Batman bem conservada',
-                             category: category, price: '1000,00',
-                             condition: condition, negotiation: :trade,
-                             photo: File.new(Rails.root.join('spec', 'support',
-                                                    'knightfall.jpg')))
+    Product.create(
+      title: 'HQ do Batman: Knight Fall',
+      description: 'Rara HQ do Batman bem conservada',
+      category: category, price: '1000,00',
+      condition: condition, negotiation: :trade,
+      photo: File.new(Rails.root.join('spec', 'support',
+                                      'knightfall.jpg'))
+    )
 
-    another_product = Product.create(title: 'Robô megazord',
-                                     description: 'Robô megazord lego',
-                                     category: category, price: '500,00',
-                                     condition: condition, negotiation: :both,
-                                     photo: File.new(Rails.root.join('spec',
-                                                                      'support',
-                                                                      'megazord_lego_leproso.jpg')))
+    Product.create(
+      title: 'Robô megazord',
+      description: 'Robô megazord lego',
+      category: category, price: '500,00',
+      condition: condition, negotiation: :both,
+      photo: File.new(Rails.root.join('spec', 'support', 'megazord_lego.jpg'))
+    )
 
     visit root_path
 
     within '#card-product1' do
-      expect(page).to have_css("//img[@src*='knightfall.jpg']") 
+      expect(page).to have_css("img[@src*='knightfall.jpg']")
       expect(page).to have_css('h5', text: 'HQ do Batman: Knight Fall')
       expect(page).to have_css('p', text: 'Troca')
       expect(page).to have_css('p', text: 'R$ 1.000,00')
     end
 
     within '#card-product2' do
-      expect(page).to have_css("//img[@src*='megazord_lego_leproso.jpg']") 
+      expect(page).to have_css("img[@src*='megazord_lego.jpg']")
       expect(page).to have_css('h5', text: 'Robô megazord')
       expect(page).to have_css('p', text: 'Troca e Venda')
       expect(page).to have_css('p', text: 'R$ 500,00')
@@ -107,5 +109,5 @@ feature 'visitor visit home page' do
     click_on 'Voltar'
 
     expect(current_path).to eq(root_path)
-  end 
+  end
 end
