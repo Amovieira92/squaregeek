@@ -35,13 +35,24 @@ feature 'Visitor search product' do
       click_on 'Buscar'
     end
 
-    expect(current_path).to eq: root_path
+    expect(current_path).to eq(root_path)
+    
+    within '#card-product1' do
+      expect(page).to have_css('h5', text: first_product.title)
+      expect(page).to have_css('p', text: 'Troca')
+      expect(page).to have_css('p', text: 'R$ 30,00')
+    end
 
-    expect(page).to have_css('h5', text: first_product.title)
-    expect(page).to have_css('p', text: first_product.description)
+    within '#card-product2' do
+      expect(page).to have_css('h5', text: second_product.title)
+      expect(page).to have_css('p', text: 'Venda')
+      expect(page).to have_css('p', text: 'R$ 50,00')
+    end
 
-    expect(page).to have_css('h5', text: second_product.title)
-    expect(page).to have_css('p', text: another_product.description,
-                                  class: 'card-text')
+    expect(page).not_to have_css('div', id: "#card-product3")
+    expect(page).not_to have_css('h5', text: third_product.title)
+
+    expect(page).not_to have_css('div', id: "#card-product4")
+    expect(page).not_to have_css('h5', text: fourth_product.title)
   end
 end

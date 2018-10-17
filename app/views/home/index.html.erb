@@ -3,17 +3,17 @@
 <%= link_to 'Anunciar produto', new_product_path, class: 'btn btn-primary'%>
 
 <div id='busca'>
-  <%= form_tag(products_path) do  %>
-    <%= label_tag 'Buscar por palavra-chave' %>
+  <%= form_tag(root_path, method: "get") do  %>
+    <%= label_tag :key_word, 'Buscar por palavra-chave' %>
     <%= text_field_tag :key_word %>
-    <%= submit_tag 'Busca' %>
+    <%= submit_tag 'Buscar' %>
   <% end %>
 </div>
 
 <div class="row">
   <% @products.each do |product| %>
    <div class="col-4">
-      <div class="card">
+      <div class="card" id='card-product<%= product.id %>'>
         <%= image_tag product.photo.url(:thumb), class: 'card-img-top' %>
         <div class="card-body">
             <h5 class="card-title"><%= link_to product.title, product %></h5>

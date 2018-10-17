@@ -20,11 +20,12 @@ feature 'visitor visit home page' do
                                                     'knightfall.jpg')))
 
     visit root_path
-    
-    expect(page).to have_css("//img[@src*='knightfall.jpg']") 
-    expect(page).to have_css('h5', text: product.title, class: 'card-title')
-    expect(page).to have_css('p', text: 'Troca', class: 'card-text')
-    expect(page).to have_css('p', text: 'R$ 1.000,00', class: 'card-text')
+    within '#card-product1' do
+      expect(page).to have_css("//img[@src*='knightfall.jpg']")
+      expect(page).to have_css('h5', text: product.title, class: 'card-title')
+      expect(page).to have_css('p', text: 'Troca', class: 'card-text')
+      expect(page).to have_css('p', text: 'R$ 1.000,00', class: 'card-text')
+    end
   end
 
   scenario 'and view product list on home page' do
@@ -48,16 +49,20 @@ feature 'visitor visit home page' do
                                                                       'megazord_lego_leproso.jpg')))
 
     visit root_path
-    
-    expect(page).to have_css("//img[@src*='knightfall.jpg']") 
-    expect(page).to have_css('h5', text: 'HQ do Batman: Knight Fall')
-    expect(page).to have_css('p', text: 'Troca')
-    expect(page).to have_css('p', text: 'R$ 1.000,00')
-    
-    expect(page).to have_css("//img[@src*='megazord_lego_leproso.jpg']") 
-    expect(page).to have_css('h5', text: 'Robô megazord')
-    expect(page).to have_css('p', text: 'Troca ou Venda')
-    expect(page).to have_css('p', text: 'R$ 500,00')
+
+    within '#card-product1' do
+      expect(page).to have_css("//img[@src*='knightfall.jpg']") 
+      expect(page).to have_css('h5', text: 'HQ do Batman: Knight Fall')
+      expect(page).to have_css('p', text: 'Troca')
+      expect(page).to have_css('p', text: 'R$ 1.000,00')
+    end
+
+    within '#card-product2' do
+      expect(page).to have_css("//img[@src*='megazord_lego_leproso.jpg']") 
+      expect(page).to have_css('h5', text: 'Robô megazord')
+      expect(page).to have_css('p', text: 'Troca e Venda')
+      expect(page).to have_css('p', text: 'R$ 500,00')
+    end
   end
 
   scenario 'and view product details' do
