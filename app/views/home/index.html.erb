@@ -2,11 +2,29 @@
 
 <%= link_to 'Anunciar produto', new_product_path, class: 'btn btn-primary'%>
 
-<% @products.each do |product| %>
-    <div class="card-body">
-        <h5 class="card-title"><%= link_to product.title, product %></h5>
-        <p class="card-text"><%= product.description %></p>
-    </div>    
-<% end %> 
+<div id='busca'>
+  <%= form_tag(products_path) do  %>
+    <%= label_tag 'Buscar por palavra-chave' %>
+    <%= text_field_tag :key_word %>
+    <%= submit_tag 'Busca' %>
+  <% end %>
+</div>
+
+<div class="row">
+  <% @products.each do |product| %>
+   <div class="col-4">
+      <div class="card">
+        <%= image_tag product.photo.url(:thumb), class: 'card-img-top' %>
+        <div class="card-body">
+            <h5 class="card-title"><%= link_to product.title, product %></h5>
+            <p class="card-text">
+                <%= t product.negotiation %>
+                <%= number_to_currency(product.price) %>
+            </p>
+        </div>
+      </div>
+    </div>
+  <% end %> 
+</div>
 
 
