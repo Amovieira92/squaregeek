@@ -11,13 +11,14 @@ feature 'visitor visit home page' do
     category = Category.create!(name: 'HQs')
     condition = Condition.create!(name: 'Bom estado')
     user = create(:user)
-    product = Product.create!(title: 'HQ do Batman: Knight Fall',
-                             description: 'Rara HQ do Batman bem conservada',
-                             category: category, price: '1000,00',
-                             condition: condition, negotiation: :trade,
-                             user: user,
-                             photo: File.new(Rails.root.join('spec', 'support',
-                                                             'knightfall.jpg')))
+    product = create(:product,
+                     title: 'HQ do Batman: Knight Fall',
+                     description: 'Rara HQ do Batman bem conservada',
+                     category: category, price: '1000,00',
+                     condition: condition, negotiation: :trade,
+                     user: user,
+                     photo: File.new(Rails.root.join('spec', 'support',
+                                                     'knightfall.jpg')))
 
     visit root_path
     within '#card-product1' do
