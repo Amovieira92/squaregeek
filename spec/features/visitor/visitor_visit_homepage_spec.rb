@@ -30,9 +30,9 @@ feature 'visitor visit home page' do
   end
 
   scenario 'and view product list on home page' do
+    user = create(:user)
     category = Category.create(name: 'HQs')
     condition = Condition.create!(name: 'Bom estado')
-    user = create(:user)
     Product.create(
       title: 'HQ do Batman: Knight Fall',
       description: 'Rara HQ do Batman bem conservada',
@@ -96,9 +96,9 @@ feature 'visitor visit home page' do
   end
 
   scenario 'and back to home page after view product details' do
+    user = create(:user)
     category = Category.create(name: 'HQs')
     condition = Condition.create(name: 'Bom estado')
-    user = create(:user)
     product = Product.create(title: 'HQ do Batman: Knight Fall',
                              description: 'Rara HQ do Batman bem conservada',
                              category: category, price: '1000,00', user: user,

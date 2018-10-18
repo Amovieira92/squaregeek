@@ -39,6 +39,7 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  config.include Warden::Test::Helpers
   config.include FactoryBot::Syntax::Methods
   config.include Warden::Test::Helpers
   config.include Devise::Test::IntegrationHelpers, type: :request
