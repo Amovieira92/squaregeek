@@ -11,3 +11,9 @@
 <p><%= @product.condition.name %></p>
 <h3>Negociação<h3>
 <p><%= t(@product.negotiation) %></p>
+
+<% if @product.user.eql? current_user %>
+  <%= link_to 'Editar', edit_product_path(@product), class: 'btn btn-secondary' %>
+  <%= link_to 'Apagar', @product, method: :delete,
+    class: 'btn btn-danger', data: { confirm: 'Quer realmente apagar este produto?' }  %>
+<% end %>

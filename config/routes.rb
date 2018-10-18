@@ -3,5 +3,4 @@ Rails.application.routes.draw do
   root to: 'home#index'
   get 'perfil', to: 'users#profile' , as: 'my_profile'
   resources :products
-
 end
