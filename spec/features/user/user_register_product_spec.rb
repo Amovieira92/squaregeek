@@ -34,6 +34,6 @@ feature 'user register product' do
     expect(page).to have_css('p', text: 'Conservado')
     expect(page).to have_css('h3', text: 'Negociação')
     expect(page).to have_css('p', text: 'Troca')
-    expect(page).to have_css("//img[@src*='knightfall.jpg']")
+    expect(page).to have_css("img[@src*='knightfall.jpg']")
   end
 end
