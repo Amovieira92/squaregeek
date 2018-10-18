@@ -1,1 +1,44 @@
 @import "bootstrap";
+
+@import "_variables.scss";
+@import "_mixins.scss";
+@import "products.scss";
+
+body {
+  @include body-font;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include body-font;
+  font-weight: 700;
+}
+
+.search-box {
+  position: relative;
+  background-color: $gray-800;
+  background: url('header-bg.jpg') no-repeat center center;
+  @include background-cover;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  .overlay {
+    position: absolute;
+    background-color: $gray-900;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+  }
+}
+
+.navbar-nav {
+  li {
+    margin-left: 10px
+  }
+}
+

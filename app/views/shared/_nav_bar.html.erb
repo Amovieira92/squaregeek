@@ -13,6 +13,10 @@
         <li>
           <a class="nav-link" href="<%= proposals_path %>">Propostas</a>
         </li>
+        <li>
+          <%= link_to 'Anunciar produto', new_product_path, class: 'nav-link' %>
+        </li>
+        
       <% end %>
 
     </ul>
@@ -27,7 +31,7 @@
       </ul>
     <% else %>
       <ul class="navbar-nav">
-        <li>Olá, <b><%= current_user.email %></b></li>
+        <li><span class="nav-link">Olá, <b><%= current_user.email %></b><span></li>
         <li><%= link_to 'Perfil',  my_profile_path, class: "btn btn-primary"  %></li>
         <li><%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-danger"  %></li>
 

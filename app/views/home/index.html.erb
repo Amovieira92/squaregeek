@@ -1,34 +1,72 @@
-<h1>Bem vindo ao Square Geek</h1>
-
-<%= link_to 'Anunciar produto', new_product_path, class: 'btn btn-primary'%>
-
-<div id='busca'>
-  <%= form_tag(root_path, method: "get") do  %>
-    <%= label_tag :key_word, 'Buscar por palavra-chave' %>
-    <%= text_field_tag :key_word %>
-    <%= submit_tag 'Buscar' %>
-  <% end %>
-</div>
-
-<% if @products.empty? %>
-  <div>
-    <p>Não houve resultados para esta busca</p>
-  </div>
-<% else %>
-  <div class="row">
-    <% @products.each do |product| %>
-    <div class="col-4">
-        <div class="card" id='card-product<%= product.id %>'>
-          <%= image_tag product.photo.url(:thumb), class: 'card-img-top' %>
-          <div class="card-body">
-              <h5 class="card-title"><%= link_to product.title, product %></h5>
-              <p class="card-text">
-                  <%= t product.negotiation %>
-                  <%= number_to_currency(product.price) %>
-              </p>
-          </div>
-        </div>
+<section class="search-box text-white text-center">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <h2 class="mb-4">Bem vindo ao Square Geek!</h2>
       </div>
-    <% end %> 
+      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+
+        <div id='busca'>
+          <%= form_tag(root_path, method: "get") do  %>
+          <div class="form-row">
+            <div class="col-12 col-md-9 mb-2 mb-md-0">
+              <%= text_field_tag :key_word, nil, class: 'form-control form-control-lg', :placeholder => 'Buscar produto...' %>
+            </div>
+            <div class="col-12 col-md-3">
+              <%= submit_tag 'Buscar', class: 'btn btn-block btn-lg btn-primary'  %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
   </div>
-<% end %>
+</section>
+
+  <section class="products text-center bg-light">
+    <div class="container">
+      <div class="row">
+        <% if @products.empty? %>
+          <div class="col-md-12">
+            <div class="alert alert-danger" role="alert">
+              Não houve resultados para: <%= params[:key_word] %>
+            </div>
+          </div>
+        <% else %>
+          <% if params[:key_word] && !params[:key_word].empty? %>
+            <div class="col-md-12">
+              <div class="alert alert-light" role="alert">
+                Resultados para: <%= params[:key_word] %>
+              </div>
+            </div>
+          <% end %>
+          <% @products.each do |product| %>
+            <div class="col-lg-3 col-md-12">
+              <div class="card product-item">
+                <%= image_tag product.photo.url(:thumb), class: 'card-img-top' %>
+                <div class="card-body" id='card-product<%= product.id %>'>
+                  <h5 class="card-title"><%= link_to product.title, product %></h5>
+                  <p class="card-text">
+                    <%= t product.negotiation %>
+                    <%= number_to_currency(product.price) %>
+                  </p>
+                  <%= link_to 'Ver Detalhes', product, class: 'btn btn-primary'  %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+      <% end %>
+      </div>
+    </div>
+  </section>
+
+
+<footer class="footer bg-light">
+  <div class="container">
+    <div class="alert alert-light" role="alert">
+      &copy; SquareGeek 2018. Todos os direitos Reservados.
+    </div>
+  </div>
+</footer>

@@ -1,12 +1,42 @@
-<h1>Perfil<h1>
-<h2>Nome</h2>
-<%=current_user.name%>
-<h2>Email</h2>
-<%=current_user.email%>
-<h2>Telefone</h2>
-<%=current_user.phone%>
-<h2>Cidade<h2>
-<%=current_user.city%>
-<h2>Estado</h2>
-<%=current_user.state%>
-<%=link_to 'Editar' , edit_user_registration_path %> 
+<div class="container">
+
+	<div class="box-perfil">
+		<div class="form-group row">
+			<div class="col-3">
+				<label class="col-sm-2 col-form-label col-form-label-sm">Nome</label>
+				<div class="col-sm-12">
+					<input type="text" class="form-control form-control-sm" placeholder="col-form-label-sm" value="<%=current_user.name%>" readonly>
+				</div>
+			</div>
+			<div class="col-3">
+				<label  class="col-sm-2 col-form-label col-form-label-sm">Email</label>
+				<div class="col-sm-12">
+					<input type="text" class="form-control form-control-sm" value="<%=current_user.email%>" readonly>
+				</div>
+			</div>
+			<div class="col-2">
+				<label class="col-sm-2 col-form-label col-form-label-sm">Telefone</label>
+				<div class="col-sm-12">
+					<input type="text" class="form-control form-control-sm" value="<%=current_user.phone%>" readonly>
+				</div>
+			</div>
+			<div class="col-2">
+				<label class="col-sm-2 col-form-label col-form-label-sm">Cidade</label>
+				<div class="col-sm-12">
+					<input type="text" class="form-control form-control-sm" value="<%=current_user.city%>" readonly>
+				</div>
+			</div>
+			<div class="col-2">
+				<label class="col-sm-2 col-form-label col-form-label-sm">Estado</label>
+				<div class="col-sm-12">
+					<input type="text" class="form-control form-control-sm" value="<%=current_user.state%>" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<%=link_to 'Editar', edit_user_registration_path, class: 'btn btn-primary btn-lg btn-block' %>
+			</div>
+		</div>
+	</div>
+</div>
