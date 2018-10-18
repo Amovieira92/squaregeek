@@ -6,4 +6,5 @@ class Product < ApplicationRecord
                             default_url: '/images/products/missing.jpg'
   validates_attachment_content_type :photo, content_type: %r{\Aimage\/.*\z}
   enum negotiation: { trade: 0, sale: 1, both: 2 }
+  validates :title, :price, presence: true
 end

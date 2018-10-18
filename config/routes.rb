@@ -4,5 +4,4 @@ Rails.application.routes.draw do
   get 'perfil', to: 'users#profile' , as: 'my_profile'
   resources :proposals
   resources :products
-
 end

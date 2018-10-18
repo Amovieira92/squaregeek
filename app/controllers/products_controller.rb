@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show]
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
+  before_action :set_product, only: %i[show edit update destroy]
+  before_action :verify_user_product, only: %i[edit update destroy]
 
   def show; end
 
@@ -8,13 +10,30 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
-    @product.user = current_user
+    @product = current_user.products.new(product_params)
+
     if @product.save
       redirect_to @product
     else
       render 'new'
     end
+  end
+
+  def edit; end
+
+  def update
+    if @product.update(product_params)
+      redirect_to @product
+      flash[:success] = 'Produto editado com sucesso'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @product.destroy
+    flash[:success] = 'Produto apagado com sucesso'
+    redirect_to root_path
   end
 
   private
@@ -27,5 +46,9 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:title, :description, :category_id,
                                     :condition_id, :negotiation, :price,
                                     :photo)
+  end
+
+  def verify_user_product
+    redirect_to root_path unless @product.user.eql? current_user
   end
 end
