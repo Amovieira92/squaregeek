@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'Visitor search product' do
   scenario 'successfully' do
+    user = create(:user)
     movie_category = Category.create(name: 'Filmes')
     hq_category = Category.create(name: 'HQs')
     toy_category = Category.create(name: 'Brinquedos')
@@ -14,7 +15,8 @@ feature 'Visitor search product' do
       category: movie_category, price: '30,00',
       condition: condition, negotiation: :both,
       photo: File.new(Rails.root.join('spec', 'support',
-                                      'filme_morte_do_superman.jpg'))
+                                      'filme_morte_do_superman.jpg')),
+      user: user
     )
 
     second_product = Product.create(
@@ -23,7 +25,8 @@ feature 'Visitor search product' do
       category: hq_category, price: '50,00',
       condition: condition, negotiation: :sale,
       photo: File.new(Rails.root.join('spec', 'support',
-                                      'hq_morte_do_superman.jpg'))
+                                      'hq_morte_do_superman.jpg')),
+      user: user
     )
 
     third_product = Product.create(
@@ -31,7 +34,8 @@ feature 'Visitor search product' do
       description: 'Rara HQ do Batman',
       category: hq_category, price: '1000,00',
       condition: condition, negotiation: :trade,
-      photo: File.new(Rails.root.join('spec', 'support', 'knightfall.jpg'))
+      photo: File.new(Rails.root.join('spec', 'support', 'knightfall.jpg')),
+      user: user
     )
 
     fourth_product = Product.create(
@@ -39,7 +43,8 @@ feature 'Visitor search product' do
       description: 'Robô megazord lego',
       category: toy_category, price: '500,00',
       condition: condition, negotiation: :both,
-      photo: File.new(Rails.root.join('spec', 'support', 'megazord_lego.jpg'))
+      photo: File.new(Rails.root.join('spec', 'support', 'megazord_lego.jpg')),
+      user: user
     )
 
     visit root_path

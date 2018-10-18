@@ -8,6 +8,7 @@ feature 'visitor visit home page' do
   end
 
   scenario 'and view one product on home page' do
+    user = create(:user)
     category = Category.create(name: 'HQs')
 
     condition = Condition.create(name: 'Bom estado')
@@ -40,8 +41,9 @@ feature 'visitor visit home page' do
       category: category, price: '1000,00',
       condition: condition, negotiation: :trade,
       photo: File.new(Rails.root.join('spec', 'support',
-                                      'knightfall.jpg')), 
-      user: user)
+                                      'knightfall.jpg')),
+      user: user
+    )
 
     Product.create(
       title: 'Robô megazord',
@@ -49,7 +51,8 @@ feature 'visitor visit home page' do
       category: category, price: '500,00',
       condition: condition, negotiation: :both,
       photo: File.new(Rails.root.join('spec', 'support', 'megazord_lego.jpg')),
-      user: user)
+      user: user
+    )
 
     visit root_path
 
@@ -97,6 +100,7 @@ feature 'visitor visit home page' do
   end
 
   scenario 'and back to home page after view product details' do
+    user = create(:user)
     category = Category.create(name: 'HQs')
 
     condition = Condition.create(name: 'Bom estado')
@@ -104,7 +108,8 @@ feature 'visitor visit home page' do
     product = Product.create(title: 'HQ do Batman: Knight Fall',
                              description: 'Rara HQ do Batman bem conservada',
                              category: category, price: '1000,00',
-                             condition: condition, negotiation: :trade)
+                             condition: condition, negotiation: :trade,
+                             user: user)
 
     visit root_path
     click_on product.title

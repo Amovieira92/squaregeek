@@ -5,5 +5,4 @@ class ProposalsController < ApplicationController
     @received_proposals = Proposal.where(receiver: current_user)
     @sent_proposals = Proposal.where(sender: current_user)
   end
-
 end
