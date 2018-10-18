@@ -1,11 +1,34 @@
 <h1>Bem vindo ao Square Geek</h1>
 
 <%= link_to 'Anunciar produto', new_product_path, class: 'btn btn-primary'%>
-<div class="product">
-  <% @products.each do |product| %>
-      <div class="card-body">
-          <h5 class="card-title"><%= link_to product.title, product %></h5>
-          <p class="card-text"><%= product.description %></p>
-      </div>
+
+<div id='busca'>
+  <%= form_tag(root_path, method: "get") do  %>
+    <%= label_tag :key_word, 'Buscar por palavra-chave' %>
+    <%= text_field_tag :key_word %>
+    <%= submit_tag 'Buscar' %>
   <% end %>
 </div>
+
+<% if @products.empty? %>
+  <div>
+    <p>Não houve resultados para esta busca</p>
+  </div>
+<% else %>
+  <div class="row">
+    <% @products.each do |product| %>
+    <div class="col-4">
+        <div class="card" id='card-product<%= product.id %>'>
+          <%= image_tag product.photo.url(:thumb), class: 'card-img-top' %>
+          <div class="card-body">
+              <h5 class="card-title"><%= link_to product.title, product %></h5>
+              <p class="card-text">
+                  <%= t product.negotiation %>
+                  <%= number_to_currency(product.price) %>
+              </p>
+          </div>
+        </div>
+      </div>
+    <% end %> 
+  </div>
+<% end %>
