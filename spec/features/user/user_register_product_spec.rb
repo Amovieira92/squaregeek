@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'user register product' do
   scenario 'successfully' do
+    user = create(:user)
+    login_as(user)
     Category.create(name: 'HQs')
     Category.create(name: 'Brinquedos')
 

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature 'visitor visit home page' do
   scenario 'successfully' do
+    user = create(:user)
     category = Category.create(name: 'HQs')
 
     condition = Condition.create(name: 'Bom estado')
@@ -9,7 +10,8 @@ feature 'visitor visit home page' do
     product = Product.create(title: 'HQ do Batman: Knight Fall',
                              description: 'Rara HQ do Batman bem conservada',
                              category: category, price: '1000,00',
-                             condition: condition, negotiation: :trade)
+                             condition: condition, negotiation: :trade,
+                             user: user)
     visit root_path
 
     within '.product' do
@@ -21,6 +23,7 @@ feature 'visitor visit home page' do
   end
 
   scenario 'and view some products on home page' do
+    user = create(:user)
     category = Category.create(name: 'HQs')
 
     condition = Condition.create(name: 'Bom estado')
@@ -28,12 +31,14 @@ feature 'visitor visit home page' do
     product = Product.create(title: 'HQ do Batman: Knight Fall',
                              description: 'Rara HQ do Batman bem conservada',
                              category: category, price: '1000,00',
-                             condition: condition, negotiation: :trade)
+                             condition: condition, negotiation: :trade,
+                             user: user)
 
     another_product = Product.create(title: 'Robô megazord',
                                      description: 'Robô megazord lego',
                                      category: category, price: '500,00',
-                                     condition: condition, negotiation: :both)
+                                     condition: condition, negotiation: :both,
+                                     user: user)
 
     visit root_path
 
@@ -49,6 +54,7 @@ feature 'visitor visit home page' do
   end
 
   scenario 'and view product details' do
+    user = create(:user)
     category = Category.create(name: 'HQs')
 
     condition = Condition.create(name: 'Bom estado')
@@ -56,7 +62,8 @@ feature 'visitor visit home page' do
     product = Product.create(title: 'HQ do Batman: Knight Fall',
                              description: 'Rara HQ do Batman bem conservada',
                              category: category, price: '1000,00',
-                             condition: condition, negotiation: :trade)
+                             condition: condition, negotiation: :trade,
+                             user: user)
 
     visit root_path
     click_on product.title
