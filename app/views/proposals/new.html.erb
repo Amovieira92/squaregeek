@@ -1,5 +1,13 @@
 <div class="container mt-4 mb-2">
   <div class="panel">
+    <h1>Enviando Proposta Para:</h1>
+    <%= image_tag(@product.photo.url(:thumb), class: 'img-thumbnail') %>
+    <h3 class="mt-3"><%= @product.title %></h3>
+    <p>Categoria: <%= @product.category.name %></p>
+    <p>Condição do Produto: <%= @product.condition.name %></p>
+    <p>Preço: <%= number_to_currency @product.price %></p>
+  </div>
+  <div class="panel mt-3">
     <%= simple_form_for [@product, @proposal] do |f| %>
       <%= f.input :offered_id, collection: current_user.products, label: 'Produto a negociar' %>
       <%= f.input :price, label: 'Valor a negociar' %>
