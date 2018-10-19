@@ -2,27 +2,24 @@ require 'rails_helper'
 
 feature 'user register product' do
   scenario 'successfully' do
-    user = create(:user)
-    login_as(user)
-    Category.create(name: 'HQs')
-    Category.create(name: 'Brinquedos')
+    create(:category, name: 'HQs')
+    create(:condition, name: 'Conservado')
+    product = create(:product)
 
-    Condition.create(name: 'Ótimo estado')
-    Condition.create(name: 'Conservado')
-    user = create(:user)
-
-    login_as user, scope: :user
+    login_as product.user, scope: :user
     visit root_path
-    click_on 'Anunciar produto'
-    attach_file 'Foto', Rails.root.join('spec', 'support', 'knightfall.jpg')
+    click_on product.title
+    click_on 'Editar'
     fill_in 'Título', with: 'HQ Batman: Knight Fall'
     fill_in 'Descrição', with: 'HQ da queda do homem morcego'
     select 'HQs', from: 'Categoria'
     select 'Conservado', from: 'Condição'
     choose 'Troca'
     fill_in 'Preço', with: '1000,00'
-    click_on 'Anunciar'
+    attach_file 'Foto', Rails.root.join('spec', 'support', 'knightfall.jpg')
+    click_on 'Editar'
 
+    expect(page).to have_content('Produto editado com sucesso')
     expect(page).to have_css('h5', text: 'HQ Batman: Knight Fall')
     expect(page).to have_css('p', text: 'Descrição')
     expect(page).to have_css('p', text: 'HQ da queda do homem morcego')
@@ -37,20 +34,41 @@ feature 'user register product' do
     expect(page).to have_css("img[@src*='knightfall.jpg']")
   end
 
-  scenario 'and leave blank fields' do
-    Category.create(name: 'HQs')
-    Condition.create(name: 'Ótimo estado')
+  scenario 'and leave empty fields' do
+    create(:category, name: 'HQs')
+    create(:condition, name: 'Conservado')
+    product = create(:product)
+
+    login_as product.user, scope: :user
+    visit root_path
+    click_on product.title
+    click_on 'Editar'
+    fill_in 'Título', with: ''
+    fill_in 'Descrição', with: ''
+    fill_in 'Preço', with: ''
+    click_on 'Editar'
+
+    expect(page).to have_content('Título não pode ficar em branco')
+    expect(page).to have_content('Preço não pode ficar em branco')
+  end
+
+  scenario 'and can\'t edit products from other user' do
+    product = create(:product)
     user = create(:user)
 
     login_as user, scope: :user
-    visit root_path
-    click_on 'Anunciar produto'
-    click_on 'Anunciar'
+    visit product_path(product)
 
-    expect(page).to have_content('Você deve preencher todos os campos')
-    expect(page).to have_content('Título não pode ficar em branco')
-    expect(page).to have_content('Preço não pode ficar em branco')
-    expect(page).to have_content('Categoria é obrigatório(a)')
-    expect(page).to have_content('Condição é obrigatório(a)')
+    expect(page).not_to have_link 'Editar produto'
+  end
+
+  scenario 'and can\'t edit products from other user via link' do
+    product = create(:product)
+    user = create(:user)
+
+    login_as user, scope: :user
+    visit edit_product_path(product)
+
+    expect(current_path).to eq root_path
   end
 end

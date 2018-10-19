@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      product: Produto
+    attributes:
+      product:
+        title: Título
+        description: Descrição
+        category: Categoria
+        price: Preço
+        condition: Condição
+        photo: Foto

@@ -28,3 +28,6 @@
 /config/master.key
 
 coverage
+
+# Ignore Paperclip images
+/public/system

@@ -1,0 +1,14 @@
+<% if @product.errors.any? %>
+  <p>Você deve preencher todos os campos do produto</p>
+<% end %>
+
+<%= simple_form_for @product do |f| %>
+  <%= f.input :photo, label: 'Foto' %>
+  <%= f.input :title, label: 'Título' %>
+  <%= f.input :description, label: 'Descrição' %>
+  <%= f.association :category, label: 'Categoria' %>
+  <%= f.association :condition, label: 'Condição' %>
+  <%= f.collection_radio_buttons :negotiation, [['trade', 'Troca'], ['sale', 'Venda'], ['both', 'Ambos']], :first, :last %>
+  <%= f.input :price, label: 'Preço' %>
+  <%= f.submit btn_text, class: 'btn btn-primary' %>
+<% end %>

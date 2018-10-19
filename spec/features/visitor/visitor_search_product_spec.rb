@@ -2,18 +2,17 @@ require 'rails_helper'
 
 feature 'Visitor search product' do
   scenario 'successfully' do
-    movie_category = Category.create(name: 'Filmes')
-    hq_category = Category.create(name: 'HQs')
-    toy_category = Category.create(name: 'Brinquedos')
-    condition = Condition.create(name: 'Conservado')
-
+    movie_category = Category.create!(name: 'Filmes')
+    hq_category = Category.create!(name: 'HQs')
+    toy_category = Category.create!(name: 'Brinquedos')
+    condition = Condition.create!(name: 'Conservado')
     user = create(:user)
+
     first_product = Product.create!(
       title: 'A morte do Superman',
       description: 'Animação clássica de 1999',
       category: movie_category, price: '30,00',
-      condition: condition, negotiation: :both,
-      user: user,
+      condition: condition, negotiation: :both, user: user,
       photo: File.new(Rails.root.join('spec', 'support',
                                       'filme_morte_do_superman.jpg'))
     )
@@ -22,8 +21,7 @@ feature 'Visitor search product' do
       title: 'A morte do Superman',
       description: 'HQ clássica de 1999',
       category: hq_category, price: '50,00',
-      condition: condition, negotiation: :sale,
-      user: user,
+      condition: condition, negotiation: :sale, user: user,
       photo: File.new(Rails.root.join('spec', 'support',
                                       'hq_morte_do_superman.jpg'))
     )
@@ -32,8 +30,7 @@ feature 'Visitor search product' do
       title: 'HQ do Batman: Knight Fall',
       description: 'Rara HQ do Batman',
       category: hq_category, price: '1000,00',
-      condition: condition, negotiation: :trade,
-      user: user,
+      condition: condition, negotiation: :trade, user: user,
       photo: File.new(Rails.root.join('spec', 'support', 'knightfall.jpg'))
     )
 
@@ -41,8 +38,7 @@ feature 'Visitor search product' do
       title: 'Robô megazord',
       description: 'Robô megazord lego',
       category: toy_category, price: '500,00',
-      condition: condition, negotiation: :both,
-      user: user,
+      condition: condition, negotiation: :both, user: user,
       photo: File.new(Rails.root.join('spec', 'support', 'megazord_lego.jpg'))
     )
 
@@ -77,9 +73,9 @@ feature 'Visitor search product' do
   scenario 'and search for nil results' do
     hq_category = Category.create(name: 'HQs')
     toy_category = Category.create(name: 'Brinquedos')
-
     condition = Condition.create(name: 'Conservado')
     user = create(:user)
+
     third_product = Product.create!(
       title: 'HQ do Batman: Knight Fall',
       description: 'Rara HQ do Batman',

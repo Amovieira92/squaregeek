@@ -11,15 +11,14 @@ feature 'visitor visit home page' do
     category = Category.create!(name: 'HQs')
     condition = Condition.create!(name: 'Bom estado')
     user = create(:user)
-    product = Product.create!(
-      title: 'HQ do Batman: Knight Fall',
-      description: 'Rara HQ do Batman bem conservada',
-      category: category, price: '1000,00',
-      condition: condition, negotiation: :trade,
-      user: user,
-      photo: File.new(Rails.root.join('spec', 'support',
-                                      'knightfall.jpg'))
-    )
+    product = create(:product,
+                     title: 'HQ do Batman: Knight Fall',
+                     description: 'Rara HQ do Batman bem conservada',
+                     category: category, price: '1000,00',
+                     condition: condition, negotiation: :trade,
+                     user: user,
+                     photo: File.new(Rails.root.join('spec', 'support',
+                                                     'knightfall.jpg')))
 
     visit root_path
     within '#card-product1' do
@@ -33,19 +32,17 @@ feature 'visitor visit home page' do
   scenario 'and view product list on home page' do
     user = create(:user)
     category = Category.create(name: 'HQs')
-    condition = Condition.create(name: 'Bom estado')
-
-    Product.create(
+    condition = Condition.create!(name: 'Bom estado')
+    Product.create!(
       title: 'HQ do Batman: Knight Fall',
       description: 'Rara HQ do Batman bem conservada',
       category: category, price: '1000,00',
-      condition: condition, negotiation: :trade,
+      condition: condition, negotiation: :trade, user: user,
       photo: File.new(Rails.root.join('spec', 'support',
-                                      'knightfall.jpg')),
-      user: user
+                                      'knightfall.jpg'))
     )
 
-    Product.create(
+    Product.create!(
       title: 'Robô megazord',
       description: 'Robô megazord lego',
       category: category, price: '500,00',
@@ -72,16 +69,16 @@ feature 'visitor visit home page' do
   end
 
   scenario 'and view product details' do
+    category = Category.create!(name: 'HQs')
+
+    condition = Condition.create!(name: 'Bom estado')
+
     user = create(:user)
-    category = Category.create(name: 'HQs')
-
-    condition = Condition.create(name: 'Bom estado')
-
-    product = Product.create(title: 'HQ do Batman: Knight Fall',
-                             description: 'Rara HQ do Batman bem conservada',
-                             category: category, price: '1000,00',
-                             condition: condition, negotiation: :trade,
-                             user: user)
+    product = Product.create!(title: 'HQ do Batman: Knight Fall',
+                              description: 'Rara HQ do Batman bem conservada',
+                              category: category, price: '1000,00',
+                              condition: condition, negotiation: :trade,
+                              user: user)
 
     visit root_path
     click_on product.title

@@ -21,7 +21,7 @@ feature 'User view proposals' do
                                  desired: product_maria,
                                  status: :pending,
                                  negotiation: :trade,
-                                 date: '2018-12-10')
+                                 date: Time.zone.today)
     login_as(user_maria)
     visit root_path
     click_on 'Propostas'
@@ -52,7 +52,7 @@ feature 'User view proposals' do
                                  desired: product_maria,
                                  status: :pending,
                                  negotiation: :trade,
-                                 date: '2018-12-10')
+                                 date: Time.zone.today)
     login_as(user_joao)
     visit root_path
     click_on 'Propostas'
@@ -76,7 +76,8 @@ feature 'User view proposals' do
                       desired: product_maria,
                       status: :pending,
                       negotiation: :trade,
-                      date: '2018-12-10')
+                      date: Time.zone.today)
+
     login_as(user_joao)
     visit root_path
     click_on 'Propostas'
@@ -93,7 +94,8 @@ feature 'User view proposals' do
                                  desired: product_maria,
                                  status: :pending,
                                  negotiation: :sale,
-                                 date: '2018-12-10')
+                                 date: Time.zone.today)
+
     login_as(user_maria)
     visit root_path
     click_on 'Propostas'
@@ -115,21 +117,21 @@ feature 'User view proposals' do
                                         desired: product_maria,
                                         status: :pending,
                                         negotiation: :sale,
-                                        date: '2018-12-10')
+                                        date: Time.zone.today)
 
     jose_proposal = create(:proposal, sender: user_jose,
                                       receiver: user_maria,
                                       desired: product_maria,
                                       status: :pending,
                                       negotiation: :sale,
-                                      date: '2018-12-10')
+                                      date: Time.zone.today)
 
     lucas_proposal = create(:proposal, sender: user_lucas,
                                        receiver: user_maria,
                                        desired: product_maria,
                                        status: :pending,
                                        negotiation: :sale,
-                                       date: '2018-10-10')
+                                       date: Time.zone.today)
     login_as(user_maria)
     visit root_path
     click_on 'Propostas'
