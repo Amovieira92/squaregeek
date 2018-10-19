@@ -45,7 +45,7 @@ feature 'Visitor search product' do
     visit root_path
 
     within('div#busca') do
-      fill_in 'Buscar por palavra-chave', with: 'superman'
+      fill_in 'key_word', with: 'superman'
       click_on 'Buscar'
     end
 
@@ -80,7 +80,8 @@ feature 'Visitor search product' do
       title: 'HQ do Batman: Knight Fall',
       description: 'Rara HQ do Batman',
       category: hq_category, price: '1000,00',
-      condition: condition, negotiation: :trade, user: user,
+      condition: condition, negotiation: :trade,
+      user: user,
       photo: File.new(Rails.root.join('spec', 'support', 'knightfall.jpg'))
     )
 
@@ -88,18 +89,19 @@ feature 'Visitor search product' do
       title: 'Robô megazord',
       description: 'Robô megazord lego',
       category: toy_category, price: '500,00',
-      condition: condition, negotiation: :both, user: user,
+      condition: condition, negotiation: :both,
+      user: user,
       photo: File.new(Rails.root.join('spec', 'support', 'megazord_lego.jpg'))
     )
 
     visit root_path
 
     within('div#busca') do
-      fill_in 'Buscar por palavra-chave', with: 'superman'
+      fill_in 'key_word', with: 'superman'
       click_on 'Buscar'
     end
 
-    expect(page).to have_content('Não houve resultados para esta busca')
+    expect(page).to have_content('Não houve resultados para: superman')
     expect(current_path).to eq(root_path)
 
     expect(page).not_to have_css('div', id: '#card-product3')

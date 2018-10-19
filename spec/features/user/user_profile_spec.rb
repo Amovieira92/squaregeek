@@ -22,10 +22,10 @@ feature 'User profile' do
     click_on 'Perfil'
 
     expect(current_path).to eq(my_profile_path)
-    expect(page).to have_content(user.name)
-    expect(page).to have_content(user.email)
-    expect(page).to have_content(user.city)
-    expect(page).to have_content(user.state)
+    expect(page).to have_selector("input[value='#{user.name}']")
+    expect(page).to have_selector("input[value='#{user.email}']")
+    expect(page).to have_selector("input[value='#{user.city}']")
+    expect(page).to have_selector("input[value='#{user.state}']")
     expect(page).to have_link 'Editar'
   end
 
@@ -50,10 +50,11 @@ feature 'User profile' do
 
     click_on 'Perfil'
 
-    expect(page).to have_content('José Carlos')
-    expect(page).to have_content(user.email)
-    expect(page).to have_content(user.city)
-    expect(page).to have_content(user.state)
+    user.reload
+    expect(page).to have_selector("input[value='#{user.name}']")
+    expect(page).to have_selector("input[value='#{user.email}']")
+    expect(page).to have_selector("input[value='#{user.city}']")
+    expect(page).to have_selector("input[value='#{user.state}']")
   end
 
   scenario 'and try to edit profile with blank fields' do
