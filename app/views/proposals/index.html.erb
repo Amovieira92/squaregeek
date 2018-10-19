@@ -15,15 +15,30 @@
     <div class="panel mt-4">
       <h1>Propostas recebidas</h1>
       <% @received_proposals.each do |p| %>
-        <ul>
-          <li><small><%= p.id %></small></li>
-          <li><h1><%= link_to p.date, p %></h1></li>
-          <li>Meu produto: <h2><%= p.desired.title %></h2></li>
-          <% if p.offered %>
-            <li>Produto oferecido: <h2><%= p.offered.title %></h2></li>
-          <% end %>
-          <li>Status: <h2><%= p.status %></h2></li>
-        </ul>
+        <div class="col-lg-3 col-md-4 col-sm-12">
+          <div class="card product-item" id='card-proposal<%= p.id %>'>
+            <div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <p class="card-text">
+                  Meu produto: <%= p.desired.title if p.desired %>
+                  </p>
+                </li>
+                <li class="list-group-item">
+                  <p class="card-text">
+                  Produto oferecido: <%= p.offered.title if p.offered %>
+                  </p>
+                </li>
+                <li class="list-group-item">
+                  <p class="card-text">
+                  <strong><%= number_to_currency(p.price) %></strong>
+                  </p>
+                </li>
+              </ul>
+              <%= link_to 'Ver Detalhes', nil, class: 'btn btn-primary mt-2 mb-2 ml-2'  %>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   <% end %>
@@ -32,17 +47,30 @@
     <div class="panel mt-4">
       <h1>Propostas enviadas</h1>
       <% @sent_proposals.each do |p| %>
-        <ul>
-          <li><small><%= p.id %></small></li>
-          <li><h1><%= link_to p.date, p %></h1></li>
-          <li>Produto desejado: <h2><%= p.desired.title %></h2></li>
-          <% if p.offered %>
-            <li>Produto oferecido: <h2><%= p.offered.title %></h2></li>
-          <% else %>
-            <li><h2>Preço: <%= p.desired.price %></h2></li>
-          <% end %>
-          <li>Status: <h2><%= p.status %></h2></li>
-        </ul>
+        <div class="col-lg-3 col-md-4 col-sm-12">
+          <div class="card product-item" id='card-proposal<%= p.id %>'>
+            <div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <p class="card-text">
+                  Produto desejado: <%= p.desired.title if p.desired %>
+                  </p>
+                </li>
+                <li class="list-group-item">
+                  <p class="card-text">
+                  Produto oferecido: <%= p.offered.title if p.offered %>
+                  </p>
+                </li>
+                <li class="list-group-item">
+                  <p class="card-text">
+                  <strong><%= number_to_currency(p.price) %></strong>
+                  </p>
+                </li>
+              </ul>
+              <%= link_to 'Ver Detalhes', nil, class: 'btn btn-primary mt-2 mb-2 ml-2'  %>
+            </div>
+          </div>
+        </div>
       <% end %>
     </div>
   <% end %>
