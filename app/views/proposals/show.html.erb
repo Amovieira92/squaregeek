@@ -1,0 +1,42 @@
+  <div class="row">
+    <div class="col-4">
+      <%= image_tag(@proposal.desired.photo.url(:thumb)) %>
+      <p><%= @proposal.desired.title %></p>
+      <p><%= @proposal.desired.category %></p>
+      <p><%= @proposal.desired.condition %></p>
+      <p><%= @proposal.desired.price %></p>
+    </div>
+    <div class="col-4">setinha</div>
+    <div class="col-4">
+      <% if @proposal.offered %>
+        <%= image_tag(@proposal.offered.photo.url(:thumb)) %>
+        <p><%= @proposal.offered.title %></p>
+        <p><%= @proposal.offered.category %></p>
+        <p><%= @proposal.offered.condition %></p>
+        <p><%= @proposal.offered.price %></p>
+      <% else %>
+        FOTO DE DINHEIRO
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p><small><%= @proposal.id %></small></p>
+      <p><%= @proposal.date %></h1></p>
+      <p>
+        <b>Quem enviou:</b> nome: <%= @proposal.sender.name %>, email: 
+        <%= @proposal.sender.email %>, cidade: <%= @proposal.sender.city %>,
+        telefone: <%= @proposal.sender.phone %>
+      </p>
+      <p>
+        <b>Quem recebe:</b> <%= @proposal.receiver.name %>, email: 
+        <%= @proposal.receiver.email %>, cidade: <%= @proposal.receiver.city %>,
+        telefone: <%= @proposal.sender.phone %>
+      </p>
+      <p><b>Status:</b> <%= @proposal.status %></p>
+    </div>
+  </div>
+
+  <% if @proposal.receiver == current_user && @proposal.pending? %>
+    <%= link_to 'Aceitar', proposal_accept_path(@proposal), method: :post %>
+  <% end %>
