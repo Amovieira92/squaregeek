@@ -1,24 +1,25 @@
 <div class="container">
-	
-	<div class="row">
-		<div class="col-md-12">
-			<div class="card product-detail">
-				<h5 class="card-header"><%= @product.title %></h5>
-				<div class="card-body">
-					<div style="float: left"><%= image_tag(@product.photo.url(:medium)) %></div>
-					<p class="card-text"><b>Descrição: </b><%= @product.description %></p>
-					<p class="card-text"><b>Categoria: </b><%= @product.category.name %></p>
-					<p class="card-text"><b>Condição: </b><%= @product.condition.name %></p>
-					<p class="card-text"><b>Negociação: </b><%= t(@product.negotiation) %></p>
-					<p class="card-text"><b>Preço: </b><%= number_to_currency(@product.price) %></p>
-				</div>
-			</div>
-		</div>
-		
-		<div class="col-md-4 offset-md-8">
-			<%= link_to 'Voltar', root_path, class: 'btn btn-primary btn-lg btn-block mt-2' %>
-		</div>
-	</div>
-	
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card product-detail">
+        <h5 class="card-header"><%= @product.title %></h5>
+        <div class="card-body">
+          <div class="mr-4" style="float: left">
+            <%= image_tag(@product.photo.url(:medium)) %>
+          </div>
+          <p class="card-text"><b>Descrição: </b><%= @product.description %></p>
+          <p class="card-text"><b>Categoria: </b><%= @product.category.name %></p>
+          <p class="card-text"><b>Condição: </b><%= @product.condition.name %></p>
+          <p class="card-text"><b>Negociação: </b><%= t(@product.negotiation) %></p>
+          <p class="card-text"><b>Preço: </b><%= number_to_currency(@product.price) %></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 offset-md-8">
+      <%= link_to 'Voltar', root_path, class: 'btn btn-primary btn-lg btn-block mt-2' %>
+    </div>
+  </div>
+
 
 </div>

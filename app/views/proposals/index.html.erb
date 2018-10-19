@@ -1,46 +1,49 @@
-<div class="container">
-
-<% if !@received_proposals.present? && !@sent_proposals.present? %>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="alert alert-danger">
-        Você não possuí nenhuma proposta.
+<div class="container mt-4">
+  <% if !@received_proposals.present? && !@sent_proposals.present? %>
+    <div class="panel">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-danger">
+            Você não possuí nenhuma proposta.
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  
-<% end %>
-
-<% if @received_proposals.present? %>
-  <h1>Propostas recebidas</h1>
-  <% @received_proposals.each do |p| %>
-    <ul>
-      <li><small><%= p.id %></small></li>
-      <li><h1><%= link_to p.date, p %></h1></li>
-      <li>Meu produto: <h2><%= p.desired.title %></h2></li>
-      <% if p.offered %>
-        <li>Produto oferecido: <h2><%= p.offered.title %></h2></li>
-      <% end %>
-      <li>Status: <h2><%= p.status %></h2></li>
-    </ul>
   <% end %>
-<% end %>
 
-<% if @received_proposals.present? %>
-  <h1>Propostas enviadas</h1>
-  <% @sent_proposals.each do |p| %>
-    <ul>
-      <li><small><%= p.id %></small></li>
-      <li><h1><%= link_to p.date, p %></h1></li>
-      <li>Produto desejado: <h2><%= p.desired.title %></h2></li>
-      <% if p.offered %>
-        <li>Produto oferecido: <h2><%= p.offered.title %></h2></li>
-      <% else %>
-        <li><h2>Preço: <%= p.desired.price %></h2></li>
+  <% if @received_proposals.present? %>
+    <div class="panel mt-4">
+      <h1>Propostas recebidas</h1>
+      <% @received_proposals.each do |p| %>
+        <ul>
+          <li><small><%= p.id %></small></li>
+          <li><h1><%= link_to p.date, p %></h1></li>
+          <li>Meu produto: <h2><%= p.desired.title %></h2></li>
+          <% if p.offered %>
+            <li>Produto oferecido: <h2><%= p.offered.title %></h2></li>
+          <% end %>
+          <li>Status: <h2><%= p.status %></h2></li>
+        </ul>
       <% end %>
-      <li>Status: <h2><%= p.status %></h2></li>
-    </ul>
+    </div>
   <% end %>
-<% end %>
+
+  <% if @sent_proposals.present? %>
+    <div class="panel mt-4">
+      <h1>Propostas enviadas</h1>
+      <% @sent_proposals.each do |p| %>
+        <ul>
+          <li><small><%= p.id %></small></li>
+          <li><h1><%= link_to p.date, p %></h1></li>
+          <li>Produto desejado: <h2><%= p.desired.title %></h2></li>
+          <% if p.offered %>
+            <li>Produto oferecido: <h2><%= p.offered.title %></h2></li>
+          <% else %>
+            <li><h2>Preço: <%= p.desired.price %></h2></li>
+          <% end %>
+          <li>Status: <h2><%= p.status %></h2></li>
+        </ul>
+      <% end %>
+    </div>
+  <% end %>
 </div>

@@ -30,43 +30,44 @@
       <div class="row">
         <% if @products.empty? %>
           <div class="col-md-12">
-            <div class="alert alert-danger" role="alert">
-              Não houve resultados para: <%= params[:key_word] %>
-            </div>
+            <% if params[:key_word].present? %>
+              <div class="alert alert-danger" role="alert">
+                Não houve resultados para: <%= params[:key_word] %>
+              </div>
+            <% end %>
           </div>
         <% else %>
-          <% if params[:key_word] && !params[:key_word].empty? %>
+          <% if params[:key_word].present? %>
             <div class="col-md-12">
-              <div class="alert alert-light" role="alert">
+              <div class="alert alert-info" role="alert">
                 Resultados para: <%= params[:key_word] %>
               </div>
             </div>
           <% end %>
           <% @products.each do |product| %>
-            <div class="col-lg-3 col-md-12">
-              <div class="card product-item">
+            <div class="col-lg-3 col-md-4 col-sm-12">
+              <div class="card product-item" id='card-product<%= product.id %>'>
                 <%= image_tag product.photo.url(:thumb), class: 'card-img-top' %>
-                <div class="card-body" id='card-product<%= product.id %>'>
+                <div>
                   <h5 class="card-title"><%= link_to product.title, product %></h5>
-                  <p class="card-text">
-                    <%= t product.negotiation %>
-                    <%= number_to_currency(product.price) %>
-                  </p>
-                  <%= link_to 'Ver Detalhes', product, class: 'btn btn-primary'  %>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      <p class="card-text">
+                      <%= t product.negotiation %>
+                      </p>
+                    </li>
+                    <li class="list-group-item">
+                      <p class="card-text">
+                      <strong><%= number_to_currency(product.price) %></strong>
+                      </p>
+                    </li>
+                  </ul>
+                  <%= link_to 'Ver Detalhes', product, class: 'btn btn-primary mt-2 mb-2'  %>
                 </div>
               </div>
             </div>
           <% end %>
-      <% end %>
+        <% end %>
       </div>
     </div>
   </section>
-
-
-<footer class="footer bg-light">
-  <div class="container">
-    <div class="alert alert-light" role="alert">
-      &copy; SquareGeek 2018. Todos os direitos Reservados.
-    </div>
-  </div>
-</footer>

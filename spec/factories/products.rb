@@ -6,5 +6,7 @@ FactoryBot.define do
     description { 'HQ da queda do homem morcego' }
     negotiation { :trade }
     price { '1000,00' }
+    user
+    photo { File.new(Rails.root.join('spec', 'support', 'knightfall.jpg')) }
   end
 end
