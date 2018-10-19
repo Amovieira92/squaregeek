@@ -17,4 +17,7 @@
   <%= link_to 'Apagar', @product, method: :delete,
     class: 'btn btn-danger', data: { confirm: 'Quer realmente apagar este produto?' }  %>
 <% end %>
+<% if user_signed_in? && !@product.user.eql?(current_user) %>
+  <%= link_to 'Negociar', new_product_proposal_path(@product), class: 'btn btn-primary' %>
+<% end %>
 <%= link_to 'Voltar', root_path, class: 'btn btn-secondary' %>
