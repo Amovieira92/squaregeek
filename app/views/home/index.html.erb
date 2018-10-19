@@ -47,7 +47,7 @@
           <% @products.each do |product| %>
             <div class="col-lg-3 col-md-4 col-sm-12">
               <div class="card product-item" id='card-product<%= product.id %>'>
-                <%= image_tag product.photo.url(:thumb), class: 'card-img-top' %>
+                <%= image_tag product.photo.url(:medium), class: 'card-img-top' %>
                 <div>
                   <h5 class="card-title"><%= link_to product.title, product %></h5>
                   <ul class="list-group list-group-flush">
