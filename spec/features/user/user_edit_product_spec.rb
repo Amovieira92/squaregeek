@@ -20,16 +20,16 @@ feature 'user register product' do
     click_on 'Editar'
 
     expect(page).to have_content('Produto editado com sucesso')
-    expect(page).to have_css('h1', text: 'HQ Batman: Knight Fall')
-    expect(page).to have_css('h3', text: 'Detalhes')
+    expect(page).to have_css('h5', text: 'HQ Batman: Knight Fall')
+    expect(page).to have_css('p', text: 'Descrição')
     expect(page).to have_css('p', text: 'HQ da queda do homem morcego')
-    expect(page).to have_css('h3', text: 'Categoria')
+    expect(page).to have_css('p', text: 'Categoria')
     expect(page).to have_css('p', text: 'HQs')
-    expect(page).to have_css('h3', text: 'Preço')
+    expect(page).to have_css('p', text: 'Preço')
     expect(page).to have_css('p', text: '1.000,00')
-    expect(page).to have_css('h3', text: 'Condição')
+    expect(page).to have_css('p', text: 'Condição')
     expect(page).to have_css('p', text: 'Conservado')
-    expect(page).to have_css('h3', text: 'Negociação')
+    expect(page).to have_css('p', text: 'Negociação')
     expect(page).to have_css('p', text: 'Troca')
     expect(page).to have_css("img[@src*='knightfall.jpg']")
   end

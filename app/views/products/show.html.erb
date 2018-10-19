@@ -1,20 +1,28 @@
-<h1>Detalhes do Produto</h1>
-<%= image_tag(@product.photo.url(:medium)) %>
-<h1><%= @product.title %></h1>
-<h3>Detalhes</h3>
-<p><%= @product.description %></p>
-<h3>Categoria</h3>
-<p><%= @product.category.name %></p>
-<h3>Preço<h3>
-<p><%= number_to_currency(@product.price) %></p>
-<h3>Condição<h3>
-<p><%= @product.condition.name %></p>
-<h3>Negociação<h3>
-<p><%= t(@product.negotiation) %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card product-detail">
+        <h5 class="card-header"><%= @product.title %></h5>
+        <div class="card-body">
+          <div class="mr-4" style="float: left">
+            <%= image_tag(@product.photo.url(:medium)) %>
+          </div>
+          <p class="card-text"><b>Descrição: </b><%= @product.description %></p>
+          <p class="card-text"><b>Categoria: </b><%= @product.category.name %></p>
+          <p class="card-text"><b>Condição: </b><%= @product.condition.name %></p>
+          <p class="card-text"><b>Negociação: </b><%= t(@product.negotiation) %></p>
+          <p class="card-text"><b>Preço: </b><%= number_to_currency(@product.price) %></p>
+        </div>
+        <div class="col-md-4 mb-2">
+          <% if @product.user.eql? current_user %>
+            <%= link_to 'Editar', edit_product_path(@product), class: 'btn btn-info' %>
+            <%= link_to 'Apagar', @product, method: :delete,
+              class: 'btn btn-danger', data: { confirm: 'Quer realmente apagar este produto?' }  %>
+          <% end %>
+          <%= link_to 'Voltar', root_path, class: 'btn btn-secondary' %>
+        </div>
+      </div>
+    </div>
 
-<% if @product.user.eql? current_user %>
-  <%= link_to 'Editar', edit_product_path(@product), class: 'btn btn-info' %>
-  <%= link_to 'Apagar', @product, method: :delete,
-    class: 'btn btn-danger', data: { confirm: 'Quer realmente apagar este produto?' }  %>
-<% end %>
-<%= link_to 'Voltar', root_path, class: 'btn btn-secondary' %>
+  </div>
+</div>

@@ -1,12 +1,11 @@
 FactoryBot.define do
   factory :product do
-    title { 'Batman' }
-    description { 'Melhor quadrinho do morcegão' }
+    title { 'HQ Batman: Knight Fall' }
+    description { 'HQ da queda do homem morcego' }
     category
     condition
-    price { 40.0 }
-    negotiation { 'trade' }
-    photo { File.new(Rails.root.join('spec', 'support', 'knightfall.jpg')) }
+    negotiation { :trade }
+    price { '1000,00' }
     user
   end
 end
