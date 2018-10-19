@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_15_231342) do
+ActiveRecord::Schema.define(version: 2018_10_17_233026) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -37,8 +37,26 @@ ActiveRecord::Schema.define(version: 2018_10_15_231342) do
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer "user_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["condition_id"], name: "index_products_on_condition_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
+  end
+
+  create_table "proposals", force: :cascade do |t|
+    t.date "date"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.integer "offered_id"
+    t.integer "desired_id"
+    t.integer "negotiation", default: 0
+    t.index ["desired_id"], name: "index_proposals_on_desired_id"
+    t.index ["offered_id"], name: "index_proposals_on_offered_id"
+    t.index ["receiver_id"], name: "index_proposals_on_receiver_id"
+    t.index ["sender_id"], name: "index_proposals_on_sender_id"
   end
 
   create_table "users", force: :cascade do |t|

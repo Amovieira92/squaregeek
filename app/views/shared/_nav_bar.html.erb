@@ -9,6 +9,12 @@
       <li class="nav-item active">
           <a class="nav-link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
       </li>
+      <% if user_signed_in? %>
+        <li>
+          <a class="nav-link" href="<%= proposals_path %>">Propostas</a>
+        </li>
+      <% end %>
+
     </ul>
     <% if !user_signed_in? %>
       <ul class="navbar-nav">
