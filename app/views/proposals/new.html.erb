@@ -1,0 +1,10 @@
+<div class="container mt-4 mb-2">
+  <div class="panel">
+    <%= simple_form_for [@product, @proposal] do |f| %>
+      <%= f.input :offered_id, collection: current_user.products, label: 'Produto a negociar' %>
+      <%= f.input :price, label: 'Valor a negociar' %>
+      <%= f.input :comment, label: 'Comentários' %>
+      <%= f.submit 'Enviar proposta', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

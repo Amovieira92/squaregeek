@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_233026) do
+ActiveRecord::Schema.define(version: 2018_10_19_175949) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 2018_10_17_233026) do
     t.integer "offered_id"
     t.integer "desired_id"
     t.integer "negotiation", default: 0
+    t.decimal "price"
+    t.text "comment"
     t.index ["desired_id"], name: "index_proposals_on_desired_id"
     t.index ["offered_id"], name: "index_proposals_on_offered_id"
     t.index ["receiver_id"], name: "index_proposals_on_receiver_id"

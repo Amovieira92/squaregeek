@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   resources :proposals, only: %i[index show] do
     post 'accept', to: 'proposals#accept', as: 'accept'
   end
-  resources :products, only: %i[show new create edit update destroy]
+  resources :products do
+    resources :proposals, only: %i[new create]
+  end
 end

@@ -25,7 +25,9 @@ feature 'User approve proposals' do
     login_as(user_maria)
     visit root_path
     click_on 'Propostas'
-    click_on proposal.id
+    within("#card-proposal#{proposal.id}") do
+      click_on 'Ver Detalhes'
+    end
     click_on 'Aceitar'
 
     expect(page).to have_content(user_joao.name)
