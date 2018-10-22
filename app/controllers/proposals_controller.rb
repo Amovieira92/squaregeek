@@ -25,16 +25,18 @@ class ProposalsController < ApplicationController
 
   def create
     @proposal = current_user.proposals.new(proposal_params)
-    @proposal.date = Time.zone.today
-    @proposal.desired = Product.find(params[:product_id])
     @proposal.receiver = @proposal.desired.user
-    @proposal.save
-    redirect_to proposals_path
+    if @proposal.save
+      ProposalMailer.notify_receiver(@product, @proposal)
+      redirect_to proposals_path
+    end
   end
 
   private
 
   def proposal_params
+    @product = Product.find(params[:product_id])
     params.require(:proposal).permit(:offered_id, :price, :comment)
+          .merge(desired: @product)
   end
 end
