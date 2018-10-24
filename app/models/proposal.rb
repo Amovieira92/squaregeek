@@ -6,4 +6,8 @@ class Proposal < ApplicationRecord
 
   enum status: %i[pending accepted denied]
   enum negotiation: %i[trade sale both]
+
+  def user_related?(user)
+    [receiver, sender].include?(user)
+  end
 end

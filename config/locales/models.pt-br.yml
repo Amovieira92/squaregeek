@@ -1,4 +1,7 @@
 pt-BR:
+  pending: Pendente
+  accepted: Aceita
+  denied: Recusada
   activerecord:
     models:
       user: Usúario

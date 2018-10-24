@@ -136,10 +136,13 @@ feature 'User view proposals' do
     visit root_path
     click_on 'Propostas'
 
-    pending 'refatorar esse teste'
-    expect(page).to have_content(carlos_proposal.id)
-    expect(page).to have_content(jose_proposal.id)
-    expect(page).to have_content(lucas_proposal.id)
+    expect(page).to have_css('a', text: 'Ver Detalhes', count: 3)
+    expect(page).to have_link('Ver Detalhes',
+                              href: proposal_path(lucas_proposal))
+    expect(page).to have_link('Ver Detalhes',
+                              href: proposal_path(jose_proposal))
+    expect(page).to have_link('Ver Detalhes',
+                              href: proposal_path(carlos_proposal))
   end
 
   scenario 'and is not signed in' do
