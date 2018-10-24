@@ -1,24 +1,39 @@
-# README
+Square Geek
+==========================
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+O Square Geek é uma aplicação intermediadora de negociações entre usuários para produtos de categoria geek.
 
-Things you may want to cover:
+<h2>Requisitos</h2>
+<ul>
+<li>
+<a href="https://www.ruby-lang.org/pt/downloads/" target="_blank">Ruby</a> 2.5.1</li>
+</ul>
 
-* Ruby version
 
-* System dependencies
+<h2>Funcionalidades:</h2>
 
-* Configuration
+<ul>
+  <li>Cadastro/Login/Logout</li> 
+  <li>Buscar Produtos</li>
+  <li>Criar, inserir, editar e deletar produtos</li>
+  <li>Enviar e aceitar propostas de troca e venda</li>
+</ul>
+------------------------------------------------------------------
 
-* Database creation
+<h2>Screenshots</h2>
 
-* Database initialization
+<img src="http://prntscr.com/la1snn"/>
 
-* How to run the test suite
+------------------------------------------------------------------
 
-* Services (job queues, cache servers, search engines, etc.)
+<h2>Instruções</h2>
 
-* Deployment instructions
+<ul>
+  <li>bin/setup</li>
+  <li>rails server</li>
+  <li>Acesse a url do projeto em sua máquina</li>
+  <li>Cadastre-se e divirta-se!</li>
+</ul>
 
-* ...
+
+------------------------------------------------------------------
